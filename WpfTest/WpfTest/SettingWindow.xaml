@@ -1,0 +1,219 @@
+﻿<Window x:Class="WpfTest.SettingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfTest"
+        mc:Ignorable="d" Icon="MyIcon.ico"
+        Title="SettingWindow" Height="450" Width="481.6"
+        WindowStyle="None"
+        Loaded="Window_Loaded">
+    <Window.Resources>
+        <Style x:Key="BlueButtonStyle" TargetType="Button" >
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="#006EFF"/>
+            <Setter Property="Background" Value="#006EFF"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="Back" CornerRadius="3" BorderThickness="1" 
+                                                Background="{TemplateBinding Background}" 
+                                                BorderBrush="{TemplateBinding BorderBrush}">
+                            <Grid>
+                                <ContentPresenter  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#1A8CFF"/>
+                                <Setter Property="BorderBrush" Value="#1A8CFF"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="grayLabelStyle" TargetType="Label" >
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="BorderBrush" Value="White"/>
+            <Setter Property="Width" Value="60"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="0"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="LightGray"/>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="False">
+                    <Setter Property="Background" Value="White"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="settingCheckboxStyle" TargetType="CheckBox" >
+
+            <Setter Property="Margin" Value="2 4 6 4"/>
+            <!--<Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="LightGray"/>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="False">
+                    <Setter Property="Background" Value="White"/>
+                </Trigger>
+            </Style.Triggers>-->
+        </Style>
+    </Window.Resources>
+    <!--<Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="Back" CornerRadius="3" BorderThickness="1" 
+                                                Background="{TemplateBinding Background}" 
+                                                BorderBrush="{TemplateBinding BorderBrush}">
+                            <Grid>
+                                <ContentPresenter  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Grid>
+
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#1A8CFF"/>
+                                <Setter Property="BorderBrush" Value="#1A8CFF"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>-->
+
+    <DockPanel>
+        <!--标题栏-->
+        <Grid DockPanel.Dock="Top" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <Image Height="28" Width="26" Source="MyIcon.ico"/>
+                <Label Content="SettingWindow"/>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
+                <!--<Button x:Name="settingBtn" Width="32" VerticalAlignment="Top" Background="Transparent" 
+                            BorderThickness="0" Click="settingBtn_Click">
+                        <Image Height="28" Width="26" Source="Setting.png" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Button>
+                    <Button x:Name="sinBtn" Width="32" VerticalAlignment="Top" Background="Transparent" 
+                            BorderThickness="0" Click="minBtn_Click">
+                        <Image Height="28" Width="26" Source="Min.png" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Button>
+                    <Button x:Name="maxBtn" Width="32" VerticalAlignment="Top" Background="Transparent" 
+                            BorderThickness="0" Click="maxBtn_Click">
+                        <Image x:Name="maxImg" Height="28" Width="26" Source="Max.png" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Button>-->
+                <Button x:Name="exitBtn" Width="32" VerticalAlignment="Top" Background="Transparent" 
+                            BorderThickness="0" Click="exitBtn_Click">
+                    <Image Height="28" Width="26" Source="Close.png" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Button>
+            </StackPanel>
+        </Grid>
+        <!-- 主体部分 -->
+        <Border BorderBrush="Gray" BorderThickness="0 1 0 0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="5*" />
+                </Grid.ColumnDefinitions>
+                <Border BorderBrush="Gray" BorderThickness="0 0 1 0" Margin="0,0,10,0">
+                    <StackPanel Grid.Column="0" Margin="0,0,-1,0" Width="auto">
+                        <Label x:Name="closeMethod" Style="{StaticResource ResourceKey=grayLabelStyle}" Content="关闭方式" MouseLeftButtonDown="closeMethod_MouseLeftButtonDown"  Margin="0,0,1,0" />
+                        <Label x:Name="videoSetting" Style="{StaticResource grayLabelStyle}" Content="视频设置" MouseLeftButtonDown="videoSetting_MouseLeftButtonDown"  Margin="0,0,1,0"/>
+                        <Label x:Name="audioSetting" Style="{StaticResource grayLabelStyle}" Content="音频设置" MouseLeftButtonDown="audioSetting_MouseLeftButtonDown"  Margin="0,0,1,0"/>
+                    </StackPanel>
+                </Border>
+                <!-- 关闭方式 -->
+                <StackPanel x:Name="closeMethedPanel" Grid.Column="1" >
+                    <CheckBox x:Name="normalCloseCheckBox" Style="{StaticResource settingCheckboxStyle}" Content="点击右上角关闭" Checked="normalCloseCheckBox_Checked" Margin="2 12 6 4"/>
+                    <CheckBox x:Name="trayCloseCheckBox" Style="{StaticResource settingCheckboxStyle}" Content="隐藏到托盘" Checked="trayCloseCheckBox_Checked"/>
+                </StackPanel>
+
+                <!-- 视频设置 -->
+                <StackPanel x:Name="videoSettingPanel" Grid.Column="1" >
+                    <WrapPanel  Margin="2 10 6 2">
+                        <Label Content="摄像头：" Width="100"/>
+                        <ComboBox x:Name="cameraDeviceComboBox" SelectionChanged="cameraDeviceComboBox_SelectionChanged" Width="250" Margin="5" />
+                    </WrapPanel >
+                    <WrapPanel Margin="2 2 6 2">
+                        <Label Content="分辨率：" Width="100"/>
+                        <ComboBox x:Name="resolutionComboBox" SelectionChanged="resolutionComboBox_SelectionChanged" Width="150" Margin="5" />
+                    </WrapPanel>
+                    <WrapPanel Margin="2 2 6 2">
+                        <Label Content="帧率：" Width="100"/>
+                        <ComboBox x:Name="fpsComboBox" SelectionChanged="fpsComboBox_SelectionChanged" Width="150" Margin="5" />
+                    </WrapPanel>
+                    <WrapPanel Margin="2 2 6 2">
+                        <Label Content="画面方向：" Width="100"/>
+                        <ComboBox x:Name="resolutionModeComboBox" SelectionChanged="resolutionModeComboBox_SelectionChanged" Width="150" Margin="5" />
+                    </WrapPanel>
+                    <WrapPanel Margin="2 2 6 2">
+                        <Label Content="码率：" Width="100"/>
+                        <Slider x:Name="bitrateSlider" Thumb.DragCompleted="bitrateSlider_DragCompleted" Width="150" Maximum="1500" Minimum="200" Value="500" Margin="5" />
+                        <Label x:Name="bitrateNumLabel" Content="kps"/>
+                    </WrapPanel>
+                    <Button x:Name="confirmBtn" Style="{StaticResource ResourceKey=BlueButtonStyle}" Content="保存" HorizontalAlignment="Center" Click="confirmBtn_Click" Margin="165,50" Height="20" Width="65"/>
+                </StackPanel>
+
+                <!-- 音频设置 -->
+
+                <StackPanel x:Name="audioSettingPanel" Grid.Column="1" >
+                    <WrapPanel Margin="2 2 6 2" Height="30">
+                        <Label Content="麦克风" Width="100" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="30"/>
+                        <ComboBox x:Name="micDeviceComboBox" VerticalAlignment="Center" Width="150" Height="20" 
+                              SelectionChanged="micDeviceComboBox_SelectionChanged" />
+                    </WrapPanel>
+                    <WrapPanel Margin="2 2 6 2" Height="30">
+                        <Label Content="音量" Width="100" VerticalContentAlignment="Center" Height="30"/>
+                        <Slider x:Name="micVolumeSlider" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 0 0 0"  Width="134" Maximum="100" Minimum="0" Value="0" 
+                            Thumb.DragCompleted="micVolumeSlider_DragCompleted"/>
+                        <Label x:Name="micVolumeNumLabel" Content="%"/>
+                    </WrapPanel>
+                    <WrapPanel Margin="2 2 6 2" Height="30" >
+                        <Button x:Name="micTestBtn" Content="麦克风测试" Margin="3 4 4 4" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource ResourceKey=BlueButtonStyle}"
+                            Click="micTestBtn_Click" Height="20" Width="64" HorizontalContentAlignment="Center" />
+                        <ProgressBar x:Name="micProgressBar" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="29 4 0 4"  Width="150" Height="20"/>
+                    </WrapPanel>
+                    <WrapPanel Margin="2 2 6 2" Height="30">
+                        <Label Content="扬声器" Width="100" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="30"/>
+                        <ComboBox x:Name="speakerDeviceComboBox" Width="150" Height="20" VerticalAlignment="Center"
+                              SelectionChanged="speakerDeviceComboBox_SelectionChanged"/>
+                    </WrapPanel>
+                    <WrapPanel Margin="2 2 6 2" Height="30">
+                        <Label Content="音量" Width="100" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="30"/>
+                        <Slider x:Name="speakerVolumeSlider" Width="135" Maximum="100" Minimum="0" Value="0" VerticalAlignment="Center"
+                            Thumb.DragCompleted="speakerVolumeSlider_DragCompleted"/>
+                        <Label x:Name="speakerVolumeNumLabel" Content="%" VerticalAlignment="Center"/>
+                    </WrapPanel>
+                    <WrapPanel Margin="2 2 6 2" Height="30">
+                        <Button x:Name="speakerTestBtn"  Content="扬声器测试" Margin="3 4 4 4" Height="20" Width="64" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource BlueButtonStyle}"
+                            Click="speakerTestBtn_Click" />
+                        <ProgressBar x:Name="speakerProgressBar"  VerticalAlignment="Center" HorizontalAlignment="Center" Margin="29 4 0 4"  Width="150" Height="20" />
+                    </WrapPanel>
+                    <StackPanel Orientation="Horizontal" Margin="2 2 6 2" Height="30">
+                        <CheckBox x:Name="systemAudioCheckBox" Content="系统混音" VerticalAlignment="Center" Margin="4 4 10 4" Click="OnSystemAudioCheckBoxClick"/>
+                        <CheckBox x:Name="aecCheckBox" Content="回声消除" VerticalAlignment="Center" Margin="10 4 10 4" Checked="aecCheckBox_CheckedChanged"/>
+                        <CheckBox x:Name="ansCheckBox" Content="采集降噪" VerticalAlignment="Center" Margin="10 4 10 4" Checked="ansCheckBox_CheckedChanged"/>
+                        <CheckBox x:Name="agcCheckBox" Content="自动增益" VerticalAlignment="Center" Margin="10 4 10 4" Checked="agcCheckBox_CheckedChanged"/>
+                    </StackPanel>
+                    <WrapPanel Margin="2 2 6 2" Height="30">
+                        <Label Content="音质（重新进课堂时生效）：" VerticalContentAlignment="Center"/>
+                        <ComboBox x:Name="audioQualityComboBox" Width="150" Height="20" Margin="0 5 0 5" SelectionChanged="audioQualityComboBox_SelectionChanged"/>
+                    </WrapPanel>
+
+
+                </StackPanel>
+
+            </Grid>
+        </Border>
+    </DockPanel>
+</Window>

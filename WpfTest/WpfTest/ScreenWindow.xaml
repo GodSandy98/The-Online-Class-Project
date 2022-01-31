@@ -1,0 +1,39 @@
+﻿<Window x:Class="WpfTest.ScreenWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfTest"
+        xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+        xmlns:wfi ="clr-namespace:System.Windows.Forms.Integration;assembly=WindowsFormsIntegration"
+        mc:Ignorable="d"
+        Title="ScreenWindow" Height="457.2" Width="599.6"
+        WindowStyle="None" >
+    <DockPanel>
+        <!--标题栏-->
+        <Grid DockPanel.Dock="Top" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <Image Height="28" Width="26" Source="MyIcon.ico"/>
+                <Label Content="ScreenWindow"/>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
+                <Button x:Name="exitBtn" Width="32" VerticalAlignment="Top" Background="Transparent" 
+                            BorderThickness="0" Click="exitBtn_Click">
+                    <Image Height="28" Width="26" Source="Close.png" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Button>
+            </StackPanel>
+        </Grid>
+        <Grid>
+            <WindowsFormsHost x:Name="form1" Loaded="OnLoad" HorizontalAlignment="Left" Height="378" Margin="10,10,0,0" VerticalAlignment="Top" Width="574">
+                <wf:ListView x:Name="screenListView"  Height="350" Margin="36,35,0,0"  Width="717">
+                </wf:ListView>
+            </WindowsFormsHost>
+            <Button Content="确定" HorizontalAlignment="Left" Margin="121,393,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-1.92,0.625" Click="OnSaveBtnClick"/>
+            <Button Content="取消" HorizontalAlignment="Left" Margin="399,393,0,0" VerticalAlignment="Top" Width="75" Click="OnCancelBtnClick"/>
+        </Grid>
+    </DockPanel>
+</Window>

@@ -1,0 +1,70 @@
+﻿<Window x:Class="WpfTest.StuInfoWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfTest"
+        mc:Ignorable="d" ResizeMode="CanMinimize"
+        Title="StuInfoWindow" Height="450" Width="520" WindowStyle="None" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <DockPanel>
+            <Grid DockPanel.Dock="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
+                    <Image Height="28" Width="26" Source="MyIcon.ico"/>
+                    <Label Content="学生信息"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right"  VerticalAlignment="Top">
+                    <Button x:Name="MinBtn" Width="32" VerticalAlignment="Top" Background="Transparent" BorderThickness="0" Click="MinBtn_Click">
+                        <Image Height="28" Width="26" Source="Min.png" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Button>
+                    <!--<Button x:Name="MaxBtn" Width="32" VerticalAlignment="Top" Background="Transparent" BorderThickness="0">
+                        <Image Height="28" Width="26" Source="Max.png" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Button>-->
+                    <Button x:Name="ExitBtn" Width="32" VerticalAlignment="Top" Background="Transparent" 
+                        BorderThickness="0" Click="ExitBtn_Click" >
+                        <Image Height="28" Width="26" Source="Close.png" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Button>
+                </StackPanel>
+            </Grid>
+
+            <StackPanel>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Label x:Name="studentLabel" Content="姓名：xxx" Grid.Row="0" Grid.Column="0"/>
+                    <Label x:Name="entryTimeLabel" Content="进入时间：" Grid.Row="1" Grid.Column="0"/>
+                    <Label x:Name="accuracyLabel" Content="正确率：" Grid.Row="2" Grid.Column="0"/>
+                    <Label x:Name="classIDLabel" Content="教室ID：" Grid.Row="0" Grid.Column="1"/>
+                    <Label x:Name="leaveTimeLabel" Content="离开时间：" Grid.Row="1" Grid.Column="1"/>
+                    <Label x:Name="statementNumLabel" Content="发言次数：" Grid.Row="2" Grid.Column="1"/>
+                    <Label x:Name="genderLabel" Content="性别：" Grid.Row="0" Grid.Column="2"/>
+                    <Label x:Name="totalTimeLabel" Content="总时间：" Grid.Row="1" Grid.Column="2"/>
+                    <Label x:Name="focusTimeLabel" Content="专注时间：" Grid.Row="1" Grid.Column="3"/>
+
+
+                </Grid>
+
+                <StackPanel>
+                    <Label Content="专注时间占比图："/>
+                    <CheckBox Content="显示发言时间点" x:Name="statementPointCheckBox" Margin="300 200 10 10"/>
+                </StackPanel>
+                
+            </StackPanel>
+
+
+        </DockPanel>
+    </Grid>
+</Window>

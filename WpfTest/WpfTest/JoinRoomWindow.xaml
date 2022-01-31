@@ -1,0 +1,69 @@
+﻿<Window x:Class="WpfTest.JoinRoomWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfTest"
+        mc:Ignorable="d" Icon="MyIcon.ico"
+        Title="JoinRoomWindow" Height="450" Width="300" ResizeMode="CanMinimize"
+        WindowStyle="None" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style x:Key="BlueButtonStyle" TargetType="Button" >
+            <Setter Property="Width" Value="45"/>
+            <Setter Property="Height" Value="45"/>
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="#006EFF"/>
+            <Setter Property="Background" Value="#006EFF"/>
+            <Setter Property="Width" Value="51"/>
+            <Setter Property="Height" Value="Auto"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="23.8,9,23.6,37"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="Back" CornerRadius="3" BorderThickness="1" 
+                                                Background="{TemplateBinding Background}" 
+                                                BorderBrush="{TemplateBinding BorderBrush}">
+                            <Grid>
+                                <ContentPresenter  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#1A8CFF"/>
+                                <Setter Property="BorderBrush" Value="#1A8CFF"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <DockPanel>
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" HorizontalAlignment="Stretch"  VerticalAlignment="Top">
+                <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
+                    <Image Height="28" Width="26" Source="MyIcon.ico"/>
+                    <Label Content="加入教室" Width="245"/>
+                </StackPanel>
+                <Button x:Name="ExitBtn" Width="32" VerticalAlignment="Top" Background="Transparent"  BorderThickness="0" Click="exitBtn_Click" >
+                    <Image Height="28" Width="26" Source="Close.png" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+                </Button>
+            </StackPanel>
+            <StackPanel Margin="25 0 25 0" >
+                <Label Content="教室号：" Margin="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                <TextBox Margin="8,2" Height="20" x:Name="roomIDTextBox" VerticalContentAlignment="Center" HorizontalAlignment="Stretch"/>
+                <StackPanel>
+                    <Label Content="教室密码：" Margin="2 8 2 2"/>
+                    <PasswordBox Margin="8,2" Password="" PasswordChar="*" x:Name="roomPasswordBox" VerticalContentAlignment="Center" Height="20" HorizontalAlignment="Stretch"/>
+                </StackPanel>
+                <Label Content="教室设置" Margin="2 8 2 2"/>
+                <CheckBox Content="自动连接音频" x:Name="isOpenAudio" Margin="8 2 8 4"/>
+                <CheckBox Content="自动开启摄像头" x:Name="isOpenVideo" Margin="8 2 8 4"/>
+                <Button x:Name="joinRoomButton" Content="进入教室" Style="{StaticResource BlueButtonStyle}" Margin="8 160 8 8" Height="28" Width="326"  Click="joinRoomButton_Click"/>
+            </StackPanel>
+        </DockPanel>
+    </Grid>
+</Window>

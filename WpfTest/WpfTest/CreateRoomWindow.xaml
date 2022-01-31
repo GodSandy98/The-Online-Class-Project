@@ -1,0 +1,103 @@
+﻿<Window x:Class="WpfTest.CreateRoomWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfTest"
+        mc:Ignorable="d" Icon="MyIcon.ico"
+        Title="CreateRoomWindow" Height="450" Width="300" ResizeMode="CanMinimize"
+        WindowStyle="None" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style x:Key="BlueButtonStyle" TargetType="Button" >
+            <Setter Property="Width" Value="45"/>
+            <Setter Property="Height" Value="45"/>
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="#006EFF"/>
+            <Setter Property="Background" Value="#006EFF"/>
+            <Setter Property="Width" Value="51"/>
+            <Setter Property="Height" Value="Auto"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="23.8,9,23.6,37"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="Back" CornerRadius="3" BorderThickness="1" 
+                                                Background="{TemplateBinding Background}" 
+                                                BorderBrush="{TemplateBinding BorderBrush}">
+                            <Grid>
+                                <ContentPresenter  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#1A8CFF"/>
+                                <Setter Property="BorderBrush" Value="#1A8CFF"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+    </Window.Resources>
+    <Grid>
+        <DockPanel>
+            <!--标题栏-->
+            
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" HorizontalAlignment="Right" VerticalAlignment="Top">
+                <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
+                    <Image Height="28" Width="26" Source="MyIcon.ico"/>
+                    <Label x:Name="titleLabel" Content="创建教室" Width="240"/>
+                </StackPanel>
+                <!--<Button x:Name="SettingBtn" Width="32" VerticalAlignment="Top" Background="Transparent" BorderThickness="0">
+                    <Image Height="28" Width="26" Source="Setting.png" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Button>
+                <Button x:Name="MinBtn" Width="32" VerticalAlignment="Top" Background="Transparent" BorderThickness="0">
+                    <Image Height="28" Width="26" Source="Min.png" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Button>
+                <Button x:Name="MaxBtn" Width="32" VerticalAlignment="Top" Background="Transparent" BorderThickness="0">
+                    <Image Height="28" Width="26" Source="Max.png" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Button>-->
+                <Button x:Name="exitBtn" Width="32" VerticalAlignment="Top" Background="Transparent" 
+                        BorderThickness="0" Click="exitBtn_Click">
+                    <Image Height="28" Width="26" Source="Close.png" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Button>
+            </StackPanel>
+            <StackPanel>
+                <StackPanel Margin="25 0 25 0" >
+                    <Label Content="教室名称：" Margin="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <TextBox Margin="8,2" Height="20" x:Name="classTitleTextBox" VerticalContentAlignment="Center" HorizontalAlignment="Stretch"/>
+
+                    <Label Content="人数上限：" Margin="2 8 2 2"/>
+                    <TextBox Margin="8,2" x:Name="maxPeopleTextBox" VerticalContentAlignment="Center" Height="20" HorizontalAlignment="Stretch">
+                        <TextBox.Resources>
+                            <VisualBrush x:Key="HintText" TileMode="None" Opacity="0.5" Stretch="None" AlignmentX="Left">
+                                <VisualBrush.Visual>
+                                    <TextBlock FontStyle="Italic" Text="默认人数上限50"/>
+                                </VisualBrush.Visual>
+                            </VisualBrush>
+                        </TextBox.Resources>
+                        <TextBox.Style>
+                            <Style TargetType="TextBox">
+                                <Style.Triggers>
+                                    <Trigger Property="Text" Value="{x:Null}">
+                                        <Setter Property="Background" Value="{StaticResource HintText}"/>
+                                    </Trigger>
+                                    <Trigger Property="Text" Value="">
+                                        <Setter Property="Background" Value="{StaticResource HintText}"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+
+                    <Label Content="教室密码" Margin="2 8 2 2"/>
+                    <CheckBox Content="开启教室密码" Unchecked="hasPasswordCheckBox_Checked" x:Name="hasPasswordCheckBox" Margin="8 2 8 4"/>
+                    <PasswordBox Margin="8,2" Height="20" x:Name="passwordPasswordBox" VerticalContentAlignment="Center" IsEnabled="{Binding ElementName=hasPasswordCheckBox, Path=IsChecked}"/>
+                    <Button x:Name="createRoomBtn" Tag="" Content="创建教室"  Style="{StaticResource BlueButtonStyle}" Margin="8 160 8 8" Height="28" Width="326" Click="createRoomBtn_Click" />
+                </StackPanel>
+            </StackPanel>
+        </DockPanel>
+    </Grid>
+</Window>
